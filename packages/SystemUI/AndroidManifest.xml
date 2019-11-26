@@ -305,6 +305,9 @@
 
     <!-- Mainline network stack -->
     <uses-permission android:name="android.permission.MAINLINE_NETWORK_STACK" />
+    
+    <!-- DataSwitch tile -->
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
 
     <application
         android:name=".SystemUIApplication"
