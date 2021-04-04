@@ -222,6 +222,9 @@ import java.util.TreeSet;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Future;
 
+// CustomGlobalActionsService
+import com.android.server.custom.globalactions.CustomGlobalActionsService;
+
 /**
  * Entry point to {@code system_server}.
  */
@@ -2421,6 +2424,13 @@ public final class SystemServer implements Dumpable {
             t.traceBegin("StartMediaMetricsManager");
             mSystemServiceManager.startService(MediaMetricsManagerService.class);
             t.traceEnd();
+
+            // CustomGlobalActionsService
+            if (!mOnlyCore){
+                t.traceBegin("StartCustomGlobalActionsService");
+                mSystemServiceManager.startService(CustomGlobalActionsService.class);
+                t.traceEnd();
+            }
         }
 
         if (!isWatch) {
