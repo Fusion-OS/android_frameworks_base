@@ -16,4 +16,7 @@
     <dimen name="status_bar_battery_bolt_icon_height">13.5dp</dimen>
     <dimen name="status_bar_battery_bolt_icon_width">9.7dp</dimen>
 
+    <!-- QQS Brightness slider -->
+    <dimen name="quick_qs_brightness_margin_top">24dp</dimen>
+
 </resources>
