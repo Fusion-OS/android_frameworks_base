@@ -5241,6 +5241,13 @@ public final class Settings {
          * @hide
          */
         public static final String SHOW_VOLTE_ICON = "volte_icon";
+
+        /**
+         * Whether to hide navbar pill and keyboard space.
+         * Default 0.
+         * @hide
+         */
+        public static final String FULLSCREEN_GESTURES = "fullscreen_gestures";
         
         /** Whether the phone vibrates on call waiting
          * @hide
