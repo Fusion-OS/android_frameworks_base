@@ -50,4 +50,7 @@
           Use with extreme caution. -->
      <string-array name="config_appLockAllowedSystemApps" translatable="false" />
 
+    <!-- Whether to cancel fingerprint operation if not idle -->
+    <bool name="config_fpCancelIfNotIdle">false</bool>
+
 </resources>

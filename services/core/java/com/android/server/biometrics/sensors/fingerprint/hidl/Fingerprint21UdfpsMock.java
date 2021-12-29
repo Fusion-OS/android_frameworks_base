@@ -136,9 +136,27 @@ public class Fingerprint21UdfpsMock extends Fingerprint21 implements TrustManage
     private static class TestableBiometricScheduler extends BiometricScheduler {
         @NonNull private Fingerprint21UdfpsMock mFingerprint21;
 
-        TestableBiometricScheduler(@NonNull String tag, @NonNull Handler handler,
+        TestableBiometricScheduler(Context context, @NonNull String tag,
                 @Nullable GestureAvailabilityDispatcher gestureAvailabilityDispatcher) {
-            super(tag, BiometricScheduler.SENSOR_TYPE_FP_OTHER, gestureAvailabilityDispatcher);
+            super(context, tag, BiometricScheduler.SENSOR_TYPE_FP_OTHER,
+                    gestureAvailabilityDispatcher);
+            mInternalCallback = new TestableInternalCallback();
+        }
+
+        class TestableInternalCallback extends InternalCallback {
+            @Override
+            public void onClientStarted(BaseClientMonitor clientMonitor) {
+                super.onClientStarted(clientMonitor);
+                Slog.d(TAG, "Client started: " + clientMonitor);
+                mFingerprint21.setDebugMessage("Started: " + clientMonitor);
+            }
+
+            @Override
+            public void onClientFinished(BaseClientMonitor clientMonitor, boolean success) {
+                super.onClientFinished(clientMonitor, success);
+                Slog.d(TAG, "Client finished: " + clientMonitor);
+                mFingerprint21.setDebugMessage("Finished: " + clientMonitor);
+            }
         }
 
         void init(@NonNull Fingerprint21UdfpsMock fingerprint21) {
@@ -252,7 +270,7 @@ public class Fingerprint21UdfpsMock extends Fingerprint21 implements TrustManage
 
         final Handler handler = new Handler(Looper.getMainLooper());
         final TestableBiometricScheduler scheduler =
-                new TestableBiometricScheduler(TAG, handler, gestureAvailabilityDispatcher);
+                new TestableBiometricScheduler(context, TAG, gestureAvailabilityDispatcher);
         final MockHalResultController controller =
                 new MockHalResultController(sensorProps.sensorId, context, handler, scheduler);
         return new Fingerprint21UdfpsMock(context, fingerprintStateCallback, sensorProps, scheduler,
