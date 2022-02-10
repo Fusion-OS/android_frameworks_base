@@ -15,7 +15,6 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.util.settings.SecureSettings;
-
 import javax.inject.Inject;
 
 public class BatterySaverTileGoogle extends BatterySaverTile {
