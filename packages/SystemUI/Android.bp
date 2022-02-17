@@ -84,6 +84,7 @@ android_library {
         "res-product",
         "res-keyguard",
         "res",
+        "res-blur",
     ],
     static_libs: [
         "WindowManager-Shell",
@@ -120,6 +121,7 @@ android_library {
         "jsr330",
         "lottie",
         "faceunlock_framework",
+        "AndroidSystemBlur",
     ],
     manifest: "AndroidManifest.xml",
 
