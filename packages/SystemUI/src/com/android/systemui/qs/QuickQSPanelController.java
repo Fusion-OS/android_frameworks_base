@@ -47,6 +47,7 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
                 if (newMaxTiles != mView.getNumQuickTiles()) {
                     setMaxTiles(newMaxTiles);
                 }
+                mView.updateColumns();
             };
 
     private final FooterActionsController mFooterActionsController;
@@ -79,6 +80,7 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
     protected void onViewAttached() {
         super.onViewAttached();
         mView.addOnConfigurationChangedListener(mOnConfigurationChangedListener);
+        mView.updateColumns();
     }
 
     @Override
@@ -99,6 +101,7 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
 
     private void setMaxTiles(int parseNumTiles) {
         mView.setMaxTiles(parseNumTiles);
+        mView.updateColumns();
         setTiles();
     }
 
