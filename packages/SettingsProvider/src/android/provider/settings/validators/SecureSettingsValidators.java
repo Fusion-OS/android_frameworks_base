@@ -25,6 +25,7 @@ import static android.provider.settings.validators.SettingsValidators.COLON_SEPA
 import static android.provider.settings.validators.SettingsValidators.COMMA_SEPARATED_COMPONENT_LIST_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.COMPONENT_NAME_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.JSON_OBJECT_VALIDATOR;
+import static android.provider.settings.validators.SettingsValidators.APP_LIST_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.LOCALE_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.NONE_NEGATIVE_LONG_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.NON_NEGATIVE_INTEGER_VALIDATOR;
@@ -325,5 +326,6 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.POWER_MENU_ACTIONS, ANY_STRING_VALIDATOR);
         VALIDATORS.put(Secure.SHOW_COMBINED_STATUS_BAR_SIGNAL_ICONS, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.GESTURE_NAVBAR_LENGTH_MODE, new InclusiveIntegerRangeValidator(0, 2));
+        VALIDATORS.put(Secure.LAUNCHER_HIDDEN_APPS, APP_LIST_VALIDATOR);
     }
 }
