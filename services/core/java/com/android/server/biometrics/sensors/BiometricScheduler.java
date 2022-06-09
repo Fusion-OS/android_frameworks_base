@@ -243,9 +243,10 @@ public class BiometricScheduler {
     public BiometricScheduler(Context context, @NonNull String tag,
             @SensorType int sensorType,
             @Nullable GestureAvailabilityDispatcher gestureAvailabilityDispatcher) {
-        this(tag, sensorType, gestureAvailabilityDispatcher, IBiometricService.Stub.asInterface(
-                ServiceManager.getService(Context.BIOMETRIC_SERVICE)), LOG_NUM_RECENT_OPERATIONS,
-                CoexCoordinator.getInstance());
+        this(tag, new Handler(Looper.getMainLooper()), sensorType, gestureAvailabilityDispatcher,
+                IBiometricService.Stub.asInterface(
+                        ServiceManager.getService(Context.BIOMETRIC_SERVICE)),
+                LOG_NUM_RECENT_OPERATIONS, CoexCoordinator.getInstance());
 
         mCancel = context.getResources().getBoolean(
                 com.android.internal.R.bool.config_fpCancelIfNotIdle);
@@ -264,7 +265,7 @@ public class BiometricScheduler {
         if (mCurrentOperation != null) {
             if(mCancel) {
                Slog.v(getTag(), "Not idle, cancelling current operation: " + mCurrentOperation);
-               cancelInternal(mCurrentOperation);
+               mCurrentOperation.cancel(mHandler, mInternalCallback);
             } else {
                Slog.v(getTag(), "Not idle, current operation: " + mCurrentOperation);
                return;
